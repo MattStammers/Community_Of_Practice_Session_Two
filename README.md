@@ -7,6 +7,8 @@ Session:
 
 Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments thanks to https://www.kaggle.com/joniarroba
 
+Analysis based on: https://www.kaggle.com/code/ivanovskia1/predicting-no-shows-at-medical-appointments#Logistic-Regression
+
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 This work is licensed under a
