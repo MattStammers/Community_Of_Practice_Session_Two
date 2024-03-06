@@ -1,113 +1,26 @@
-# Inital working version of https://www.kaggle.com/code/ivanovskia1/predicting-no-shows-at-medical-appointments#These-are-the-final-features-and--target-variable
-
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
+from app.pre_process import Pre_process
+from app.logistic_reg import Logictic_model
+from app.decision_tree import Decision_tree
 from sklearn import metrics
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
+import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 df = pd.read_csv("KaggleV2-May-2016.csv")
 
-# basic exploration
-print(df.head())
-print(df.describe())
-print(df.shape)
+pre_processer = Pre_process(df)
+df_proc = pre_processer.format_and_get_df()
 
-no_show = df["No-show"].value_counts()
-print(no_show)
+log_reg = Logictic_model(df_proc)
 
-Percent_no_show = no_show["Yes"]/ no_show.sum() * 100
-print("Percent who didn't show up to their appointment:",Percent_no_show )
+l_y_test,l_y_pred = log_reg.log_reg()
 
-df['No-show'].replace("No", 0,inplace=True)
-df['No-show'].replace("Yes", 1,inplace=True)
-
-df["Gender"].value_counts()
-
-Exploratory_Analysis = ['Gender','Hipertension','Alcoholism','Diabetes']
-for r in Exploratory_Analysis :
-    print(df.groupby(r)['No-show'].mean())
-#df.groupby('Hipertension')['No-show'].mean()
-    
-#Convert to Categorical
-df['Handcap'] = pd.Categorical(df['Handcap'])
-#Convert to Dummy Variables
-Handicap = pd.get_dummies(df['Handcap'], prefix = 'Handicap')
-df = pd.concat([df, Handicap], axis=1)
-
-## See how each type of handicap affects whether a patient will show up to an appointment 
-handicaps = ["Handicap_1", "Handicap_2", "Handicap_3", "Handicap_4"]
-for h in handicaps:
-    print(df.groupby(h)['No-show'].mean())
-    
-df.groupby('SMS_received')['No-show'].mean()
-
-min_age = df.Age.min()
-print("Min Age:", min_age)
-max_age = df.Age.max()
-print("Max Age:", max_age)
-
-df = df[(df.Age >= 0) & (df.Age <= 100)]
-
-import numpy as np
-
-# Converts the two variables to datetime variables
-df['ScheduledDay'] = pd.to_datetime(df['ScheduledDay'])
-df['AppointmentDay'] = pd.to_datetime(df['AppointmentDay'])
-
-# Create a variable called "AwaitingTime" by subtracting the date the patient made the appointment and the date of the appointment.
-df['AwaitingTime'] = df["AppointmentDay"].sub(df["ScheduledDay"], axis=0)
-
-# Convert the result "AwaitingTime" to number of days between appointment day and scheduled day. 
-df["AwaitingTime"] = (df["AwaitingTime"] / np.timedelta64(1, 'D')).abs()
-print(df)
-print(df.columns)
-print(df["No-show"])
-# Number of Appointments Missed by Patient
-print(df.groupby('PatientId')['No-show'].apply(lambda x: x.cumsum()))
-new_col = df.groupby('PatientId')['No-show'].apply(lambda x: x.cumsum())
-df["Num_App_Missed"] = new_col.reset_index(level=0, drop=True)
-print(df)
-
-
-# The model
-
-
-
-X = df[['Gender', 'Diabetes','Hipertension', 'Scholarship', 'SMS_received',
-        'Handicap_0','Handicap_1','Handicap_2','Handicap_3','Handicap_4', 'Num_App_Missed', 'Age', 'AwaitingTime']]
-
-y = df["No-show"]
-
-#This will create dummies for the remaining variables (Gender)
-X_train1 = pd.get_dummies(X)
-
-
-
-
-scaler = StandardScaler().fit(X_train1)
-rescaledX2 = scaler.transform(X_train1)
-# summarize transformed data
-np.set_printoptions(precision=3)
-print(rescaledX2[0:5,:])
-
-# Create Training and Test Dataset with 75% Training and 25% Test
-X_train, X_test, y_train, y_test = train_test_split(rescaledX2, y, test_size=0.25)
-
-# Run Logistic Regression
-logreg = LogisticRegression()
-logreg.fit(X_train, y_train)
-y_pred = logreg.predict(X_test)
-
-# Analyze results
+print("Logistic regression")
 print("Results:")
-print("Accuracy", metrics.accuracy_score(y_test,y_pred))
+print("Accuracy", metrics.accuracy_score(l_y_test,l_y_pred))
 
 # save confusion matrix and slice into four pieces
-confusion = metrics.confusion_matrix(y_test, y_pred)
+confusion = metrics.confusion_matrix(l_y_test, l_y_pred)
 TP = confusion[1, 1]
 TN = confusion[0, 0]
 FP = confusion[0, 1]
@@ -120,37 +33,22 @@ print("Specificity:",TN / float(TN + FP))
 print("False Positive Rate:",FP / float(TN + FP))
 
 #Precision: When a positive value is predicted, how often is the prediction correct?
-print("Precision:",metrics.precision_score(y_test, y_pred))
+print("Precision:",metrics.precision_score(l_y_test, l_y_pred))
 
 #Sensitivity:
-print("Recall:",metrics.recall_score(y_test, y_pred))
+print("Recall:",metrics.recall_score(l_y_test, l_y_pred))
 
+print("Decision tree")
+dev_tree = Decision_tree(df_proc)
 
+tree, t_X_train, t_X_test, t_y_train, t_y_test, t_y_pred = dev_tree.train_tree()
 
-# examine the class distribution of the testing set (using a Pandas Series method)
-print("Class Distribution:", y_test.value_counts())
-# calculate the percentage of ones
-print("Percentage of Ones:", y_test.mean())
-
-# calculate the percentage of zeros
-print("Percentage of Zeros:", 1 - y_test.mean())
-
-# calculate null accuracy (for binary classification problems coded as 0/1)
-print("Null Accuracy:",max(y_test.mean(), 1 - y_test.mean()))
-
-
-
-X_train2, X_test2, y_train2, y_test2 = train_test_split(rescaledX2, y, test_size=0.25, random_state = 42)
-
-tree = DecisionTreeClassifier(max_depth=10, random_state=0)
-tree.fit(X_train2, y_train2)
-y_pred2 = tree.predict(X_test2)
-print('Accuracy on the training subset: {:.3f}'.format(tree.score(X_train2, y_train2)))
-print('Accuracy on the test subset: {:.3f}'.format(tree.score(X_test2, y_test2)))
+print('Accuracy on the training subset: {:.3f}'.format(tree.score(t_X_train, t_y_train)))
+print('Accuracy on the test subset: {:.3f}'.format(tree.score(t_X_test, t_y_test)))
 
 
 # save confusion matrix and slice into four pieces
-confusion = metrics.confusion_matrix(y_test2, y_pred2)
+confusion = metrics.confusion_matrix(t_y_test, t_y_pred)
 TP = confusion[1, 1]
 TN = confusion[0, 0]
 FP = confusion[0, 1]
@@ -163,14 +61,17 @@ print("Specificity:",TN / float(TN + FP))
 print("False Positive Rate:",FP / float(TN + FP))
 
 #Precision: When a positive value is predicted, how often is the prediction correct?
-print("Precision:",metrics.precision_score(y_test2, y_pred2))
+print("Precision:",metrics.precision_score(t_y_test, t_y_pred))
 
 #Sensitivity:
-print("Recall:",metrics.recall_score(y_test2, y_pred2))
+print("Recall:",metrics.recall_score(t_y_test, t_y_pred))
 
-n_features = X_train1.shape[1]
+
+X_train = dev_tree.get_inital_input()
+
+n_features = X_train.shape[1]
 plt.barh(range(n_features), tree.feature_importances_, )
-plt.yticks(np.arange(n_features), X_train1)
+plt.yticks(np.arange(n_features), X_train)
 plt.xlabel('Feature Importance')
 plt.ylabel('Feature')
 plt.show()
