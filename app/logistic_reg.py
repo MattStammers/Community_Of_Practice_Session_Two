@@ -11,9 +11,8 @@ class Logictic_model(Basic_model):
     def __init__(self, df):
         super().__init__(df)
     
-    def log_reg(self):
-        X_train, X_test, y_train, y_test = train_test_split(self.rescaledX2, self.y, test_size=0.25)
-        logreg = LogisticRegression()
-        logreg.fit(X_train, y_train)
-        y_pred = logreg.predict(X_test)
-        return y_test,y_pred
+    def train_model(self):
+        self.train_data()
+        lr_model = LogisticRegression(max_iter=1000)
+        lr_model.fit(self.X_train, self.y_train)
+        return lr_model

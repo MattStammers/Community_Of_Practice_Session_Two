@@ -7,7 +7,7 @@ Session:
 
 Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments thanks to https://www.kaggle.com/joniarroba
 
-Analysis based on: https://www.kaggle.com/code/ivanovskia1/predicting-no-shows-at-medical-appointments#Logistic-Regression
+This takes the models found in eda_explosion from [Python_Training_for_BI_Analysts](https://github.com/MattStammers/Python_Training_For_BI_Analysts) and wraps it into Python classes
 
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 

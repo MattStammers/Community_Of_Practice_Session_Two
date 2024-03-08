@@ -12,9 +12,8 @@ class Decision_tree(Basic_model):
     def __init__(self, df):
         super().__init__(df)
     
-    def train_tree(self):
-        X_train, X_test, y_train, y_test = train_test_split(self.rescaledX2, self.y, test_size=0.25, random_state = 42)
-        tree = DecisionTreeClassifier(max_depth=10, random_state=0)
-        tree.fit(X_train, y_train)
-        y_pred = tree.predict(X_test)
-        return tree, X_train, X_test, y_train, y_test, y_pred
+    def train_model(self):
+        self.train_data()
+        dt_clf = DecisionTreeClassifier(random_state=0)
+        dt_clf.fit(self.X_train, self.y_train)
+        return dt_clf
