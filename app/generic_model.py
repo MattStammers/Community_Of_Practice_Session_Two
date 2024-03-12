@@ -34,7 +34,7 @@ class Basic_model(ABC):
         plt.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
         plt.yticks(range(len(sorted_idx)), features[sorted_idx])
         plt.title(f'Feature Importance ({m_label} Coefficients)')
-        plt.savefig(f'figures/{filename}.png', format='png', dpi=600)
+        plt.savefig(f'app/static/{filename}.png', format='png', dpi=600)
 
 
     
@@ -56,5 +56,5 @@ class Basic_model(ABC):
         plt.ylabel('True Positive Rate')
         plt.title(f'ROC Curve for {m_label} Classifier')
         plt.legend(loc='lower right')
-        plt.savefig(f'figures/{filename}.png', format='png', dpi=600)
+        plt.savefig(f'app/static/{filename}.png', format='png', dpi=600)
 

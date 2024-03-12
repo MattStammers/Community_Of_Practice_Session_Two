@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+Hi!!!!!!
+<img src={{ url_for('static', filename= 'feature_importance_logistic_regression_classifier.png' ) }}>
+    {% for url in links %}
+    {% endfor %}
+{% endblock %}
