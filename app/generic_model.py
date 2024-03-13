@@ -3,6 +3,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
+import altair as alt
+import numpy as np
 
 class Basic_model(ABC):
     def __init__(self, df):
@@ -27,34 +29,50 @@ class Basic_model(ABC):
         df.columns = [group_by, 'probNoShow']
         return df
     
-    def feature_importance(self, feature_importance,  m_label, filename):
+    def feature_importance(self, feature_importance):
         features = self.X.columns
-        sorted_idx = feature_importance.argsort()
-        plt.figure(figsize=(10, 8))
-        plt.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
-        plt.yticks(range(len(sorted_idx)), features[sorted_idx])
-        plt.title(f'Feature Importance ({m_label} Coefficients)')
-        plt.savefig(f'app/static/{filename}.png', format='png', dpi=600)
-
-
+        features_l = features.to_list()
+        feature_df = pd.DataFrame(np.column_stack([features_l, feature_importance]), 
+                        columns=['features', 'features_importance'])
+        feature_df['features_importance'] = feature_df['features_importance'].astype(float)
+        chart =  alt.Chart(feature_df,
+                width=500,
+                height=400    
+                ).mark_bar().encode(
+                    x="features_importance",
+                    y=alt.Y('features', sort='-x')
+                    )
+        return chart
     
-    def calc_roc(self, model, m_label, filename):
+    def calc_roc(self, model):
         # Predict probabilities for the positive class (1)
-        y_pred_proba_rf = model.predict_proba(self.X_test)[:, 1]
+        y_pred_proba = model.predict_proba(self.X_test)[:, 1]
 
         # Compute ROC curve and AUC
-        fpr_rf, tpr_rf, _ = roc_curve(self.y_test, y_pred_proba_rf)
-        auc_rf = roc_auc_score(self.y_test, y_pred_proba_rf)
-        # Predict probabilities for the positive class (1)
-        y_pred_proba_rf = model.predict_proba(self.X_test)[:, 1]
+        self.fpr, self.tpr, _ = roc_curve(self.y_test, y_pred_proba)
+        self.auc = roc_auc_score(self.y_test, y_pred_proba)
 
+    def plot_roc(self, m_label, filename):
         # Plot the ROC curve
-        plt.figure(figsize=(8, 6))
-        plt.plot(fpr_rf, tpr_rf, label=f'{m_label} AUC = {auc_rf:.2f}')
+        plt.figure()
+        plt.plot(self.fpr, self.tpr, label=f'{m_label} AUC = {self.auc:.2f}')
         plt.plot([0, 1], [0, 1], 'r--', label='Chance (AUC = 0.5)')
         plt.xlabel('False Positive Rate')
         plt.ylabel('True Positive Rate')
         plt.title(f'ROC Curve for {m_label} Classifier')
         plt.legend(loc='lower right')
-        plt.savefig(f'app/static/{filename}.png', format='png', dpi=600)
+        plt.savefig(f'app/static/{filename}.png', format='png')
+    
+    def get_auc(self):
+        return self.auc
+
+        # # Plot the ROC curve
+        # plt.figure()#figsize=(8, 6))
+        # plt.plot(fpr_rf, tpr_rf, label=f'{m_label} AUC = {auc_rf:.2f}')
+        # plt.plot([0, 1], [0, 1], 'r--', label='Chance (AUC = 0.5)')
+        # plt.xlabel('False Positive Rate')
+        # plt.ylabel('True Positive Rate')
+        # plt.title(f'ROC Curve for {m_label} Classifier')
+        # plt.legend(loc='lower right')
+        # plt.savefig(f'app/static/{filename}.png', format='png', dpi=600)
 
