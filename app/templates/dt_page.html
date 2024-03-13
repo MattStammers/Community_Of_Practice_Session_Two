@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@4"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+    <script src="https://vega.github.io/datalib/datalib.min.js"></script>
+    <link rel="stlesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/vega-tooltip.scss">
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/build/vega-tooltip.min.js"></script>
+  </head>
+<body>
+<div class="first" style="display: block;"></div>
+<h1>Feature Importance</h1>
+    <div class="charts text-center" IMG STYLE="float: left;">
+        <div class="row"><div id="feature"></div></div><hr>
+        <!-- Placeholder for the tooltip -->
+        <div id="vis-tooltip" class="vg-tooltip"></div>
+        </div>
+    </div>
+</div>
+<div class="second" style="display: block;"></div>
+<h1>ROC: {{ auc }}</h1>
+    <div class="charts text-center" IMG STYLE="float: left;">
+        <img src={{ url_for('static', filename= 'ROC_curve_for_decision_tree_classifier.png' ) }}>
+    </div>  
+</div>
+<!-- Render Charts --> 
+<!-- code modified from templates in: https://github.com/lemoncyb/flasked-altair/tree/master/templates-->
+<script type="text/javascript">
+      function parse(url, div) {
+        var opt = {
+          mode: "vega-lite",
+          renderer: "svg",
+          actions: {export: true, source: false, editor: false}
+        };
+
+        vegaEmbed("#"+div, url, opt, function(error, result) {
+          vegaTooltip.vegaLite(result.view, url);
+        });
+      }
+
+
+      parse("/dt_features", "feature");
+</script>
+</body>
+{% endblock %}
