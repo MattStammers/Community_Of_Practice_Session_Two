@@ -33,9 +33,9 @@ git clone <repository_url>
    git commit -m "Description of changes"
    ```
 3. **Push Changes**: Push your changes to the remote repository on GitHub.
- ```bash
-git push origin main
-```
+   ```bash
+   git push origin main
+   ```
 ### Branching
 Branches allow you to work on different features or versions of your project simultaneously.
 
@@ -55,4 +55,5 @@ git merge <branch_name>
 Pull requests are used to propose changes and request them to be merged into the main branch.
 
 **Create Pull Request**: On GitHub, navigate to your repository, and click on the "Pull requests" tab. Then click on "New pull request" and select the branches you want to merge.
+
 **Review and Merge**: Collaborators can review your changes and merge them into the main branch.
