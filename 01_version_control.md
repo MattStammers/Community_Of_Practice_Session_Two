@@ -1,6 +1,4 @@
----
-title: "Why use a Version Control System?"
----
+
 
 ## The Essence of Version Control
 
