@@ -70,12 +70,29 @@ Using a system like this solves some but not all of the issues above:
 ## Git - A Version Control System (VCS)
 
 Whilst there are many different implementations of VCS, Git has
-become established as by far the most widely used. We focus on use of Git via
-its command line interface as we believe this is the best way to communicate the
-important fundamental concepts.
+become established as by far the most widely used.
 
-Git is a very powerful tool. Unfortunately it is also quite difficult to start
-using. Git often uses confusing and unintuitive terminology and the benefits of
-its use are often only apparent in the longer term. Today we will make every
-effort to demystify Git and make clear why its usage is an essential part of
-any programming activity.
+## GitHub - A cloud based version control platform
+GitHub is a cloud-based platform where you can store, share, and work together with others to write code.
+
+Storing your code in a "repository" on GitHub allows you to:
+
+- Showcase or share your work.
+- Track and manage changes to your code over time.
+- Let others review your code, and make suggestions to improve it.
+- Collaborate on a shared project, without worrying that your changes will impact the work of your collaborators before you're ready to integrate them.
+- Collaborative working, one of GitHub’s fundamental features, is made possible by the open-source software, Git, upon which GitHub is built.
+
+  ## How do Git and GitHub work together?
+
+When you upload files to GitHub, you'll store them in a "Git repository." This means that when you make changes (or "commits") to your files in GitHub, Git will automatically start to track and manage your changes.
+
+There are plenty of Git-related actions that you can complete on GitHub directly in your browser, such as creating a Git repository, creating branches, and uploading and editing files.
+
+However, most people work on their files locally (on their own computer), then continually sync these local changes—and all the related Git data—with the central "remote" repository on GitHub. There are plenty of tools that you can use to do this, such as GitHub Desktop.
+
+Once you start to collaborate with others and all need to work on the same repository at the same time, you’ll continually:
+
+- Pull all the latest changes made by your collaborators from the remote repository on GitHub.
+- Push back your own changes to the same remote repository on GitHub.
+Git figures out how to intelligently merge this flow of changes, and GitHub helps you manage the flow through features such as "pull requests."
