@@ -6,6 +6,7 @@ By Matt Stammers, Catalina Carenzo and Jonny Sheldon
 Session: 
 
 Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments thanks to https://www.kaggle.com/joniarroba
+Learning material: https://www.imperial.ac.uk/students/academic-support/graduate-school/
 
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
