@@ -8,6 +8,7 @@ Create a new directory, open it and perform
 
 ```bash
 git init
+```
 
 to create a new git repository.
 
