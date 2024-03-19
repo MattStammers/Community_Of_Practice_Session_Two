@@ -3,7 +3,27 @@ Community of Practice Session 2 with UCLH
 
 By Jonny Sheldon, Catalina Carenzo and Matt Stammers
 
-Session:
+This training takes eda_explosion from [Python_Training_for_BI_Analysts](https://github.com/MattStammers/Python_Training_For_BI_Analysts) and wraps it into Python classes to run in a flask app using poetry.
+
+## Building the App with Poetry
+
+First call:
+```sh
+poetry install
+```
+
+Then call:
+```st
+poetry shell
+```
+
+Then to run the app call
+
+```sh
+python analysis.py
+```
+
+## Data and Sources
 
 Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments thanks to https://www.kaggle.com/joniarroba
 

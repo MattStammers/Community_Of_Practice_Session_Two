@@ -37,4 +37,4 @@ repos:
       - id: detect-secrets
         name: detect-secrets - Detect secrets in staged code
         args: [ "--baseline", ".secrets.baseline" ]
-        exclude: base.html|Pipfile
+        exclude: base.html|Pipfile|poetry

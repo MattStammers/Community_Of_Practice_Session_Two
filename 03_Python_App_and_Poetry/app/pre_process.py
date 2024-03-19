@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-df = pd.read_csv("KaggleV2-May-2016.csv")
+df = pd.read_csv("app/data/KaggleV2-May-2016.csv")
 
 
 class Pre_process:

@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "No_Show_App"
+version = "0.1.0"
+description = "An app to look for no-shows to outpatient appointments"
+authors = ["Matt Stammers", "Catalina Carenzo", "Jonny Sheldon"]
+
+[tool.poetry.dependencies]
+python = "^3.9" # Specify the Python version you're targeting
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
+scikit-learn = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4" # Assuming you might use pytest for testing
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
