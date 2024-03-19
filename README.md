@@ -46,7 +46,6 @@ This work is licensed under a
 
 [![CC BY 4.0][cc-by-image]][cc-by]
 
-<<<<<<< HEAD
 [cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
@@ -61,8 +60,20 @@ This work is licensed under a
 
 [![CC BY 4.0][cc-by-image]][cc-by]
 
-=======
->>>>>>> resources
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-image]: https://licensebuttons.net/l/by/4.0/88x31.png
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+
+## Explainer
+
+- We will explain the file structure during the training. It looks complex but this is necessary to keep you from accidentally comitting secrets to git (even internally) 🐱‍🏍
+
+- Ordinarily data would not be committed in a repository but it is necessary for this toy app. Normally, you should add your /data directory to the gitignore file so you don't accidentally commit it to the repo. To make sure this is enabled call:
+
+```bat
+pre-commit install
+```
+
+before using git to commit any work. Then the hooks will protect you from accidentally committing a secret. You can add exceptions such as the lockfile or tests to the yaml file 😎 (Yaml is just a heirarhical set of instructions).
+
+- Either the Pipenv or requirements.txt files can be used to set up the python environment
