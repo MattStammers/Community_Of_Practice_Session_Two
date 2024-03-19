@@ -18,17 +18,29 @@ df.head()
 # Preprocess data
 pre_processer = Pre_process(df)
 df_proc = pre_processer.format_and_get_df()
+# print(df_proc)
 
 # Scale the processed data
 scaler = StandardScaler()
 df_proc_scaled = scaler.fit_transform(df_proc)
+# print(df_proc_scaled)
 
-print(df_proc_scaled)
 df_proc_scaled_df = pd.DataFrame(df_proc_scaled, columns=df_proc.columns)
+print(df_proc_scaled_df)
+# Assuming 'df' is your DataFrame after preprocessing
+df_proc_scaled_df = df_proc_scaled_df.dropna(
+    subset=["No-show"]
+)  # Drops rows where 'No-show' is NaN
+df_proc_scaled_df["No-show"] = df_proc_scaled_df["No-show"].map({"Yes": 1, "No": 0})
+# Example check for NaN values in 'y' before training
+print(df_proc_scaled_df["No-show"].head())
+if df_proc_scaled_df["No-show"].isnull().any():
+    raise ValueError("NaN values found in target variable 'No-show'")
+
 
 # Logistic Regression Model
 # Assuming Logictic_model can accept a max_iter parameter
-log = Logictic_model(df_proc_scaled)  # Adjusted with scaled data
+log = Logictic_model(df_proc_scaled_df)  # Adjusted with scaled data
 log_reg = log.train_model()
 
 feature_importance = abs(log_reg.coef_[0])
@@ -42,7 +54,7 @@ log.calc_roc(
 )
 
 # Decision Tree Model
-dt = Decision_tree(df_proc_scaled)  # Adjusted with scaled data
+dt = Decision_tree(df_proc_scaled_df)  # Adjusted with scaled data
 dt_model = dt.train_model()
 
 feature_importances = dt_model.feature_importances_
@@ -52,7 +64,7 @@ dt.feature_importance(
 dt.calc_roc(dt_model, "decision_tree", "ROC_curve_for_decision_tree_classifier")
 
 # Random Forest Model
-rf = Random_forest(df_proc_scaled)  # Adjusted with scaled data
+rf = Random_forest(df_proc_scaled_df)  # Adjusted with scaled data
 rf_model = rf.train_model()
 
 feature_importances = rf_model.feature_importances_
