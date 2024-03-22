@@ -3,11 +3,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 
 class Basic_model(ABC):
     def __init__(self, df):
         self.df = df
-        self.X = self.df.drop(['No-show'], axis=1)
+        self.X = self.df.drop(["No-show"], axis=1)
+        scaler = StandardScaler()
+        df_proc_scaled = scaler.fit_transform(self.X)
+        self.X = pd.DataFrame(df_proc_scaled, columns=self.X.columns)
         self.y = self.df['No-show']
     
     def train_data(self):

@@ -2,11 +2,8 @@ from app.pre_process import Pre_process
 from app.logistic_reg import Logictic_model
 from app.decision_tree import Decision_tree
 from app.random_forest import Random_forest
-from sklearn import metrics
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.metrics import roc_auc_score, roc_curve, accuracy_score
+
 
 df = pd.read_csv("KaggleV2-May-2016.csv")
 
