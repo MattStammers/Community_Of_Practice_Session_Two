@@ -1,5 +1,3 @@
-# Inital working version of https://www.kaggle.com/code/ivanovskia1/predicting-no-shows-at-medical-appointments#These-are-the-final-features-and--target-variable
-
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
