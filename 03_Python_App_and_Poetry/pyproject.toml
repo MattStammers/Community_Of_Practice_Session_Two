@@ -1,19 +1,20 @@
 [tool.poetry]
-name = "No_Show_App"
-version = "0.1.0"
-description = "An app to look for no-shows to outpatient appointments"
-authors = ["Matt Stammers", "Catalina Carenzo", "Jonny Sheldon"]
+name = "no-show-error"
+version = "0.01"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9" # Specify the Python version you're targeting
-pandas = "*"
-numpy = "*"
-matplotlib = "*"
-scikit-learn = "*"
+python = "^3.9"
+pandas = "2.2.1"
+scikit-learn = "1.4.1.post1"
+matplotlib = "3.8.3"
+flask = "^3.0.2"
+python-dotenv = "^1.0.1"
+altair = "^5.2.0"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2.4" # Assuming you might use pytest for testing
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

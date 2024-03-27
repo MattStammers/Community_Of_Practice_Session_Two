@@ -1,15 +1,13 @@
-# Inital working version of https://www.kaggle.com/code/ivanovskia1/predicting-no-shows-at-medical-appointments#These-are-the-final-features-and--target-variable
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-df = pd.read_csv("app/data/KaggleV2-May-2016.csv")
+df = pd.read_csv("app/static/data/KaggleV2-May-2016.csv")
 
 
 class Pre_process:
     def __init__(self, df):
-        self.df = df.copy()
+        self.df = df
 
     def _preprocess(self):
         self.df.rename(
@@ -29,7 +27,6 @@ class Pre_process:
         self.df["Gender"] = self.df["Gender"].apply(lambda x: 1 if x == "F" else 0)
         self.df["No-show"] = self.df["No-show"].apply(lambda x: 1 if x == "Yes" else 0)
         self.df = self.df[(self.df.Age >= 0) & (self.df.Age <= 100)]
-        print(self.df["No-show"].unique())
 
     def _calc_date(self):
         # Converts the two variables to datetime variables
@@ -48,17 +45,17 @@ class Pre_process:
 
     def _calc_no_shows(self):
         # Number of Appointments Missed by Patient
-        self.df.loc[:, "No-show"] = pd.to_numeric(self.df["No-show"], errors="coerce")
+        self.df["No-show"] = pd.to_numeric(self.df["No-show"], errors="coerce")
 
     def _split_day_month_year(self):
-        self.df.loc[:, "ScheduledDay_Y"] = self.df["ScheduledDay"].dt.year
-        self.df.loc[:, "ScheduledDay_M"] = self.df["ScheduledDay"].dt.month
-        self.df.loc[:, "ScheduledDay_D"] = self.df["ScheduledDay"].dt.day
+        self.df["ScheduledDay_Y"] = self.df["ScheduledDay"].dt.year
+        self.df["ScheduledDay_M"] = self.df["ScheduledDay"].dt.month
+        self.df["ScheduledDay_D"] = self.df["ScheduledDay"].dt.day
         self.df.drop(["ScheduledDay"], axis=1, inplace=True)
 
-        self.df.loc[:, "AppointmentDay_Y"] = self.df["AppointmentDay"].dt.year
-        self.df.loc[:, "AppointmentDay_M"] = self.df["AppointmentDay"].dt.month
-        self.df.loc[:, "AppointmentDay_D"] = self.df["AppointmentDay"].dt.day
+        self.df["AppointmentDay_Y"] = self.df["AppointmentDay"].dt.year
+        self.df["AppointmentDay_M"] = self.df["AppointmentDay"].dt.month
+        self.df["AppointmentDay_D"] = self.df["AppointmentDay"].dt.day
         self.df.drop(["AppointmentDay"], axis=1, inplace=True)
 
     def _add_labels(self):
@@ -75,11 +72,10 @@ class Pre_process:
 
     def _final_tidy(self):
         self.df.PatientId = self.df.PatientId.astype(int)
-        self.df.drop(
-            ["Sched_Appt", "ScheduledDay_DayOfWeek_Name", "PatientId", "AppointmentID"],
-            axis=1,
-            inplace=True,
-        )
+        self.df.drop(["Sched_Appt"], axis=1, inplace=True)
+        self.df.drop(["ScheduledDay_DayOfWeek_Name"], axis=1, inplace=True)
+        self.df.drop(["PatientId"], axis=1, inplace=True)
+        self.df.drop(["AppointmentID"], axis=1, inplace=True)
 
     def format_and_get_df(self):
         self._preprocess()
