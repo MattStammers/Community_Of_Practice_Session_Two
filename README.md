@@ -52,6 +52,11 @@ Obviously we cannot cover everything in a single 1 hour NHS session but you will
 
 ## License and Attribution
 
+
+## Flask
+
+The app can be run as a python script (`python analysis.py`) or as a flask app (`flask run`).
+
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 This work is licensed under a

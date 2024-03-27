@@ -1,10 +1,4 @@
-import numpy as np
-import pandas as pd
 from app.generic_model import Basic_model
-from sklearn import metrics
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
 
