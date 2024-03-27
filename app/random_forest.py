@@ -1,6 +1,4 @@
 from sklearn.ensemble import RandomForestClassifier
-
-
 from app.generic_model import Basic_model
 
 class Random_forest(Basic_model):

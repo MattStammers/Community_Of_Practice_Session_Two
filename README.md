@@ -9,6 +9,11 @@ Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments 
 
 This takes the models found in eda_explosion from [Python_Training_for_BI_Analysts](https://github.com/MattStammers/Python_Training_For_BI_Analysts) and wraps it into Python classes
 
+
+## Flask
+
+The app can be run as a python script (`python analysis.py`) or as a flask app (`flask run`).
+
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 This work is licensed under a

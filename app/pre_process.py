@@ -1,11 +1,9 @@
-# Inital working version of https://www.kaggle.com/code/ivanovskia1/predicting-no-shows-at-medical-appointments#These-are-the-final-features-and--target-variable
-
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 
 
-df = pd.read_csv("KaggleV2-May-2016.csv")
+df = pd.read_csv("app/static/data/KaggleV2-May-2016.csv")
 
 class Pre_process():
     def __init__(self, df):
