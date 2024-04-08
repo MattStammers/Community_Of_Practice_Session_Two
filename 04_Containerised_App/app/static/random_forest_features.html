@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-ad3e5393f073250a4be15eb96f7742e3"}, "mark": {"type": "bar"}, "encoding": {"x": {"field": "features_importance", "type": "quantitative"}, "y": {"field": "features", "sort": "-x", "type": "nominal"}}, "height": 400, "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-ad3e5393f073250a4be15eb96f7742e3": [{"features": "Gender", "features_importance": 0.02713469420808322}, {"features": "Age", "features_importance": 0.19874736530348763}, {"features": "Neighbourhood", "features_importance": 0.17632846785939776}, {"features": "Scholarship", "features_importance": 0.012193650134394858}, {"features": "Hypertension", "features_importance": 0.010597982993799136}, {"features": "Diabetes", "features_importance": 0.008734979098007897}, {"features": "Alcoholism", "features_importance": 0.006047809688815535}, {"features": "Handicap", "features_importance": 0.0059119074388624526}, {"features": "SMS_received", "features_importance": 0.012107236987774297}, {"features": "Sched_To_Appt", "features_importance": 0.09347754740492664}, {"features": "ScheduledDay_DayOfWeek_Num", "features_importance": 0.022394020970662235}, {"features": "AwaitingTime", "features_importance": 0.2751635820545071}, {"features": "ScheduledDay_Y", "features_importance": 7.981621231420937e-05}, {"features": "ScheduledDay_M", "features_importance": 0.015724349809850786}, {"features": "ScheduledDay_D", "features_importance": 0.045199502800345945}, {"features": "AppointmentDay_Y", "features_importance": 0.0}, {"features": "AppointmentDay_M", "features_importance": 0.006464858360196128}, {"features": "AppointmentDay_D", "features_importance": 0.06130818920690834}, {"features": "ScheduledDay_DOW", "features_importance": 0.022384039467665765}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

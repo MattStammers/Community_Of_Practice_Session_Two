@@ -1,8 +1,8 @@
 import pandas as pd
-from app.decision_tree import Decision_tree
-from app.logistic_reg import Logictic_model
-from app.pre_process import Pre_process
-from app.random_forest import Random_forest
+from app.data_processing.pre_process import Pre_process
+from app.modelling.decision_tree import Decision_tree
+from app.modelling.logistic_reg import Logistic_model
+from app.modelling.random_forest import Random_forest
 
 df = pd.read_csv("app/static/data/KaggleV2-May-2016.csv")
 
@@ -10,7 +10,7 @@ pre_processer = Pre_process(df)
 df_proc = pre_processer.format_and_get_df()
 print(df_proc)
 
-log = Logictic_model(df_proc)
+log = Logistic_model(df_proc)
 log_reg = log.train_model()
 feature_importance = abs(log_reg.coef_[0])
 chart = log.feature_importance(feature_importance)
