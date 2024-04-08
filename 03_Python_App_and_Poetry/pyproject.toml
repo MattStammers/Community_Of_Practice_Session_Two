@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "no-show-error"
-version = "0.01"
+name = "no-show-app"
+version = "0.1"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Matt Stammers <matthew.stammers@reallyusefulmodels.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -13,7 +13,7 @@ matplotlib = "3.8.3"
 flask = "^3.0.2"
 python-dotenv = "^1.0.1"
 altair = "^5.2.0"
-
+pytest = "*"
 
 [build-system]
 requires = ["poetry-core"]

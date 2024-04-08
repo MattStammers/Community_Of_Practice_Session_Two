@@ -1,20 +1,64 @@
 {% extends "base.html" %}
 
 {% block content %}
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+    <script src="https://vega.github.io/datalib/datalib.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/vega-tooltip.scss">
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.16.0/build/vega-tooltip.min.js"></script>
+    <style>
+        /* Custom styles */
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .chart-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .chart-title {
+            margin-bottom: 20px;
+        }
+        .chart {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
 <div class="container mt-4">
-    <div class="text-center">
-        <h1 class="mb-4">Feature Importance</h1>
-        <div id="feature" class="row"></div>
-        <hr>
-        <!-- Placeholder for the tooltip -->
-        <div id="vis-tooltip" class="vg-tooltip"></div>
+    <div class="header">
+        <h1 class="text-center">Data Analysis Dashboard</h1>
+        <p class="lead text-center">Explore feature importance and ROC curves</p>
     </div>
 
-    <div class="text-center mt-5">
-        <h1>ROC: {{ auc }}</h1>
-        <img src={{ url_for('static', filename= 'ROC_curve_for_decision_tree_classifier.png' ) }} class="img-fluid">
+    <div class="chart-container">
+        <h2 class="chart-title text-center">Feature Importance</h2>
+        <div id="feature" class="chart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title text-center">ROC Curve</h2>
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='ROC_curve_for_decision_tree_classifier.png') }}" class="img-fluid">
+        </div>
+        <div class="text-center mt-3">
+            <h3>ROC Score: {{ auc }}</h3>
+            <p>This is a weak model. If you feed data into it you will get poor predictions.</p>
+        </div>
     </div>
 </div>
+</body>
 
 <!-- Render Charts -->
 <script type="text/javascript">
@@ -30,6 +74,6 @@
         }).catch(console.error);
     }
 
-    parse("/dt_features", "feature");
+    parse("/dt_features", "feature");  // Change this line to render decision tree features
 </script>
 {% endblock %}
