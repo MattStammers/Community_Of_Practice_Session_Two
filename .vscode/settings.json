@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "03_Python_App_and_Poetry"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

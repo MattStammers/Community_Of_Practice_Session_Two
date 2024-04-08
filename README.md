@@ -70,3 +70,9 @@ This work is licensed under a
 
 
 Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments thanks to https://www.kaggle.com/joniarroba
+
+### No Show Logo
+
+Created by DALL-E 08/04/2024 using the prompt - "a clinic room where the patients did not turn up." Although the staff also appear not to have turned up.
+
+![No Shows](https://raw.githubusercontent.com/MattStammers/Community_Of_Practice_Session_Two/debugging/03_Python_App_and_Poetry/app/static/images/no_shows.webp)

@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<body>
-    <h1>Community of Practice Session 2 with UCLH</h1>
-    <div class="tip" markdown="1">
-        <p>By Matt Stammers, Catalina Carenzo and Jonny Sheldon</p>
-        <p>Data Courtesy of: https://www.kaggle.com/datasets/joniarroba/noshowappointments</p>
+<div style="text-align:center;">
+    <h1 style="color: navy; margin-top: 20px;">Community of Practice Session 2 with UCLH</h1>
+    <div class="tip" style="margin: 20px;">
+        <p style="color: green;">By Matt Stammers, Catalina Carenzo and Jonny Sheldon</p>
+        <p>Data Courtesy of: <a href="https://www.kaggle.com/datasets/joniarroba/noshowappointments">Kaggle Dataset</a></p>
+        <img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="CC BY-SA 4.0" style="margin-top: 10px;">
+        <p>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+        <img src="https://www.python.org/static/community_logos/python-logo.png" alt="Python Logo" style="width:100px; margin: 10px;">
     </div>
-
-</body>
+    <div style="margin: 15px;">
+        <h2>What does this app do?</h2>
+        <p>This simple web application analyzes data on patients not turning up to clinic in a Brazilian clinic and uses 3 different models to try and predict non-attendance as a demo for the community of practice of what can be achieved with python, poetry, flask and git. Below. DALL-E Representation of Clinical No-Shows</p>
+    </div>
+    <!-- Corrected use of url_for for the no-shows image -->
+    <img src="https://raw.githubusercontent.com/MattStammers/Community_Of_Practice_Session_Two/debugging/03_Python_App_and_Poetry/app/static/images/no_shows.webp" alt="No Shows at Clinic" style="margin-top: 20px; width: 60%; border-radius: 8px;">
+</div>
 {% endblock %}
