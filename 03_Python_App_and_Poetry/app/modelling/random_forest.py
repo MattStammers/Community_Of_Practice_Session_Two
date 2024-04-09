@@ -11,7 +11,7 @@ class Random_forest(Basic_model):
 
     def train_model(self):
         self.train_data()
-        rf_clf = RandomForestClassifier(random_state=0)
+        rf_clf = RandomForestClassifier(random_state=42)
         rf_clf.fit(self.X_train, self.y_train)
 
         # Predict probabilities for the test set

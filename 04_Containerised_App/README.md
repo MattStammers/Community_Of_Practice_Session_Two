@@ -1,4 +1,4 @@
-# Community Of Practice Session Two
+# Dockerisation 👀
 Community of Practice Session 2 with UCLH
 
 By Matt Stammers, Catalina Carenzo and Jonny Sheldon
@@ -13,11 +13,24 @@ This takes the models found in eda_explosion from [Python_Training_for_BI_Analys
 
 This code has been wrapped in a docker container and an image of this can be found on [Dockerhub](https://hub.docker.com/repository/docker/ejsheldon/dna_tutorial/general)
 
-To run this:
-```bash
-docker pull ejsheldon/dna_tutorial:0.0.1
-docker run --name dna -p 8000:5000 --rm dna_tutorial:0.0.1
+To run this install docker and WSL then run the above or cd to the 04_Containerised_App folder and run:
+
+```sh
+docker docker build -t no_shows_improved .
+docker docker run -d -p 5000:5000 no_shows_improved
 ```
+
+Now if you navigate to localhost:5000 in any browser the app should be up in the container.
+
+To kill all the containers and start again
+
+```sh
+docker stop $(docker ps -aq)
+```
+
+Then run the container again to start it up once more.
+
+## Enjoy! 😁
 
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
