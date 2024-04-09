@@ -11,7 +11,7 @@ class Logistic_model(Basic_model):
 
     def train_model(self):
         self.train_data()
-        lr_model = LogisticRegression(max_iter=1000)
+        lr_model = LogisticRegression(max_iter=10000, random_state=42)
         lr_model.fit(self.X_train, self.y_train)
 
         # Predict probabilities for the test set

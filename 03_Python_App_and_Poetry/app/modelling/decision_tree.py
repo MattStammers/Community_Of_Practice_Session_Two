@@ -11,7 +11,7 @@ class Decision_tree(Basic_model):
 
     def train_model(self):
         self.train_data()
-        dt_clf = DecisionTreeClassifier(random_state=0)
+        dt_clf = DecisionTreeClassifier(random_state=42)
         dt_clf.fit(self.X_train, self.y_train)
 
         # Predict probabilities for the test set
