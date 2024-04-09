@@ -19,8 +19,9 @@ def log_page():
 
 @app.route("/log_reg_features")
 def log_reg_features():
-    feature_importance = abs(models["logistic_regression"].coef_[0])
-    chart = models["log_model"].feature_importance(feature_importance)
+    logistic_regression_model = models["logistic_regression"]
+    feature_importance = abs(logistic_regression_model.coef_[0])
+    chart = logistic_regression_model.feature_importance(feature_importance)
     return chart.to_json()
 
 
@@ -32,8 +33,9 @@ def dt_page():
 
 @app.route("/dt_features")
 def dt_features():
-    feature_importances = models["decision_tree"].feature_importances_
-    chart = models["dt_model"].feature_importance(feature_importances)
+    decision_tree_model = models["decision_tree"]
+    feature_importance = abs(decision_tree_model.coef_[0])
+    chart = decision_tree_model.feature_importance(feature_importance)
     return chart.to_json()
 
 
@@ -45,6 +47,7 @@ def rf_page():
 
 @app.route("/rf_features")
 def rf_features():
-    feature_importances = models["random_forest"].feature_importances_
-    chart = models["rf_model"].feature_importance(feature_importances)
+    random_forest_model = models["random_forest"]
+    feature_importance = abs(random_forest_model.coef_[0])
+    chart = random_forest_model.feature_importance(feature_importance)
     return chart.to_json()
