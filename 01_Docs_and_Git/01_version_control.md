@@ -16,7 +16,7 @@
   - The opposite of branching
   - Combines different branches together
 
----
+THIS IS A MISTAKE
 
 ## What Can Go Wrong Without Version Control
 
