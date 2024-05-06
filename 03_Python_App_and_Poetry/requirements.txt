@@ -37,4 +37,4 @@ threadpoolctl==3.4.0
 toml==0.10.2
 toolz==0.12.1
 tzdata==2024.1
-Werkzeug==3.0.2
+Werkzeug==3.0.3
