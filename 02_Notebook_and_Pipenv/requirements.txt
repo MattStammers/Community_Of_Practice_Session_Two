@@ -74,7 +74,7 @@ nbconvert==7.16.1 ; python_version >= '3.8'
 nbformat==5.9.2 ; python_version >= '3.8'
 nest-asyncio==1.6.0 ; python_version >= '3.5'
 networkx==3.2.1 ; python_version >= '3.9'
-nltk==3.8.1 ; python_version >= '3.7'
+nltk==3.9 ; python_version >= '3.7'
 notebook-shim==0.2.4 ; python_version >= '3.7'
 nrclex==3.0.0
 numba==0.58.1 ; python_version >= '3.8'
