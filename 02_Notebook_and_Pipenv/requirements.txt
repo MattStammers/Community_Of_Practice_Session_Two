@@ -57,7 +57,7 @@ jupyter-events==0.9.0 ; python_version >= '3.8'
 jupyter-lsp==2.2.2 ; python_version >= '3.8'
 jupyter-server==2.12.5 ; python_version >= '3.8'
 jupyter-server-terminals==0.5.2 ; python_version >= '3.8'
-jupyterlab==4.1.2
+jupyterlab==4.2.5
 jupyterlab-pygments==0.3.0 ; python_version >= '3.8'
 jupyterlab-server==2.25.3 ; python_version >= '3.8'
 kiwisolver==1.4.5 ; python_version >= '3.7'
