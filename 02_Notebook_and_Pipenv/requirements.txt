@@ -34,7 +34,7 @@ fonttools==4.49.0 ; python_version >= '3.8'
 fqdn==1.5.1
 gitdb==4.0.11 ; python_version >= '3.7'
 gitpython==3.1.42 ; python_version >= '3.7'
-h11==0.14.0 ; python_version >= '3.7'
+h11==0.16.0 ; python_version >= '3.7'
 htmlmin==0.1.12
 httpcore==1.0.4 ; python_version >= '3.8'
 httpx==0.27.0 ; python_version >= '3.8'
